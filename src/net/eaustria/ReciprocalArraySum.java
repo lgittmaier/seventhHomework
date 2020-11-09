@@ -10,6 +10,7 @@ package net.eaustria;
  * @author bmayr
  */
 
+import java.sql.SQLClientInfoException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
@@ -34,9 +35,11 @@ public final class ReciprocalArraySum {
      */
     protected static double seqArraySum(final double[] input) {
         double sum = 0;
+        for(int i = 0; i < input.length; i++){
+            sum += input[i];
+        }
 
-        // ToDo: Compute sum of reciprocals of array elements
-       
+       return sum;
     }
   
 
@@ -78,6 +81,8 @@ public final class ReciprocalArraySum {
             this.input = setInput;
         }
 
+
+
         /**
          * Getter for the value produced by this task.
          * @return Value produced by this task
@@ -109,7 +114,7 @@ public final class ReciprocalArraySum {
             final int numTasks) {
         double sum = 0;
        // ToDo: Start Calculation with help of ForkJoinPool
-       
+
        return sum;
     }
 }
