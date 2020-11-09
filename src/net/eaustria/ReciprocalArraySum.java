@@ -60,6 +60,7 @@ public final class ReciprocalArraySum {
          * Input array to reciprocal sum.
          */
         private final double[] input;
+
         /**
          * Intermediate value produced by this task.
          */
@@ -93,10 +94,19 @@ public final class ReciprocalArraySum {
 
         @Override
         protected void compute() {
-            // TODO: Implement Thread forking on Threshold value. (If size of
-            // array smaller than threshold: compute sequentially else, fork 
-            // 2 new threads
-           
+
+            if (input.length <= SEQUENTIAL_THRESHOLD) { // base case
+                double sum = seqArraySum(input);
+                System.out.format("Sum of %s: %d\n", input.toString(), sum);
+            } else {
+                int mid = input.length / 2;
+                ReciprocalArraySumTask firstSubtask =
+                        new ReciprocalArraySumTask(0, mid, input);
+                ReciprocalArraySumTask secondSubtask =
+                        new ReciprocalArraySumTask(mid, input.length, input);
+                
+                invokeAll(firstSubtask, secondSubtask);
+            }
             
         }
     }
