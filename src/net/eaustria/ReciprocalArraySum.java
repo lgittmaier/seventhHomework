@@ -104,7 +104,7 @@ public final class ReciprocalArraySum {
                         new ReciprocalArraySumTask(0, mid, input);
                 ReciprocalArraySumTask secondSubtask =
                         new ReciprocalArraySumTask(mid, input.length, input);
-                
+
                 invokeAll(firstSubtask, secondSubtask);
             }
             
@@ -124,7 +124,9 @@ public final class ReciprocalArraySum {
             final int numTasks) {
         double sum = 0;
        // ToDo: Start Calculation with help of ForkJoinPool
-
+        ForkJoinPool fjp = new ForkJoinPool();
+        ReciprocalArraySumTask task = new ReciprocalArraySumTask(0, input.length, input);
+       // sum =
        return sum;
     }
 }
